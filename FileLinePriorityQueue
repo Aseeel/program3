@@ -9,17 +9,21 @@ public class FileLinePriorityQueue implements MinPriorityQueueADT<FileLine> {
     // TODO
     private Comparator<FileLine> cmp;
     private int maxSize;
-
+    
+    //to maintain the order property of the queue, you must use the compare(FileLine a, FileLine b) method
     public FileLinePriorityQueue(int initialSize, Comparator<FileLine> cmp) {
 		this.cmp = cmp;
 		maxSize = initialSize;
 		
 		// TODO
+		for(int i=0; i<maxSize; i++) {
+			compare(initialSize , cmp);
+		}
     }
 
     public FileLine removeMin() throws PriorityQueueEmptyException {
 		// TODO
-
+    	
 		return null;
     }
 
