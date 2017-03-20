@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 
 /**
@@ -9,30 +11,44 @@ public class FileLinePriorityQueue implements MinPriorityQueueADT<FileLine> {
     // TODO
     private Comparator<FileLine> cmp;
     private int maxSize;
-    
-    //to maintain the order property of the queue, you must use the compare(FileLine a, FileLine b) method
+    private FileLine[] queue;
+
     public FileLinePriorityQueue(int initialSize, Comparator<FileLine> cmp) {
 		this.cmp = cmp;
 		maxSize = initialSize;
 		
 		// TODO
-		for(int i=0; i<maxSize; i++) {
-			compare(initialSize , cmp);
-		}
+		queue = new FileLine[maxSize];
     }
 
     public FileLine removeMin() throws PriorityQueueEmptyException {
-		// TODO
-    	
-		return null;
+    	// TODO
+    	FileLine fl = queue[0];
+    	if(fl==null)throw new PriorityQueueEmptyException();
+    	queue[0]=null;
+    	Arrays.sort(queue, cmp);
+    	return fl;
     }
 
     public void insert(FileLine fl) throws PriorityQueueFullException {
 		// TODO
+    	for (int i=0;i<maxSize; i++){
+    		if (queue[i]==null){
+    			queue[i]=fl;
+    			Arrays.sort(queue, cmp);
+    			return;
+    		}
+    	}
+    	throw new PriorityQueueFullException();
     }
 
     public boolean isEmpty() {
 		// TODO
-		return true;
+    	for (int i=0;i<maxSize; i++){
+    		if (queue[i]!=null){
+    			return false;
+    		}
+    	}
+    	return true;
     }
 }
