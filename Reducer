@@ -3,7 +3,7 @@
 // PROJECT:          p3
 // FILE:             Reducer.java
 //
-// Author1: Aseel Albeshri, albeshri@wisc.edu, albeshri, lecture 002
+// Author1:	Aseel Albeshri, albeshri@wisc.edu, albeshri, lecture 002
 // Author2: Jessica Fernandes, jfernandes2@wisc.edu, jfernandes2, lecture 002
 //
 /////////////////////////////////////////////////////////////////////////////
@@ -77,12 +77,13 @@ public class Reducer {
 			System.out.println("Invalid type of data! " + type);
 			System.exit(1);
 		}
+		FileLinePriorityQueue queue = new FileLinePriorityQueue(r.getNumFiles(), r.getComparator());
 		
 		for(int i = 0; i < fileList.size(); i++) {
 			queue.insert(fileList.get(i).next());
 		}
 		 PrintWriter printWriter = new PrintWriter ("output.txt");
-		while (!queue.isEmpty) {
+		while (!queue.isEmpty()) {
 			FileLine e = queue.removeMin();
 			
 			if (e.equals(r))
