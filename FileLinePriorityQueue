@@ -1,3 +1,12 @@
+/////////////////////////////////////////////////////////////////////////////
+// Semester:         CS367 Spring 2017
+// PROJECT:          p3
+// FILE:             FileLinePriorityQueue.java
+//
+// Author1: Aseel Albeshri, albeshri@wisc.edu, albeshri, lecture 002
+// Author2: Jessica Fernandes, jfernandes2@wisc.edu, jfernandes2, lecture 002
+//
+/////////////////////////////////////////////////////////////////////////////
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
