@@ -1,4 +1,6 @@
+import java.util.Arrays;
 import java.util.Comparator;
+import java.util.TreeSet;
 
 /**
  * The ThesaurusRecord class is the child class of Record to be used when merging thesaurus data.
@@ -6,6 +8,8 @@ import java.util.Comparator;
 
 public class ThesaurusRecord extends Record{
     // TODO declare data structures required
+	private String word;
+	private TreeSet<String> synonyms = new TreeSet<String>();
 
 	/**
 	 * Constructs a new ThesaurusRecord by passing the parameter to the parent constructor
@@ -25,8 +29,13 @@ public class ThesaurusRecord extends Record{
 	private class ThesaurusLineComparator implements Comparator<FileLine> {
 		public int compare(FileLine l1, FileLine l2) {
 			// TODO implement compare() functionality
-
-			return 0;
+			if(l1==null) return 1;
+			if(l2==null) return -1;
+			
+//			String s1 = l1.getString().split(":")[0];
+//			String s2 = l2.getString().split(":")[0];
+//			return s1.compareTo(s2);
+			return l1.getWord().compareTo(l2.getWord());
 		}
 		
 		public boolean equals(Object o) {
@@ -46,6 +55,8 @@ public class ThesaurusRecord extends Record{
 	 */
     public void clear() {
 		// TODO initialize/reset data members
+    	this.word = null;
+    	this.synonyms = new TreeSet<String>();
     }
 	
 	/**
@@ -54,6 +65,10 @@ public class ThesaurusRecord extends Record{
 	 */
     public void join(FileLine w) {
 		// TODO implement join() functionality
+    	if(this.word == null){
+    		this.word = w.getWord();
+    	}
+    	this.synonyms.addAll(Arrays.asList(w.getSynonyms()));
     }
 	
 	/**
@@ -61,6 +76,7 @@ public class ThesaurusRecord extends Record{
 	 */
     public String toString() {
 		// TODO
-		return null;
+    	String s = this.word + ":" + String.join(",", this.synonyms);
+		return s;
 	}
 }
