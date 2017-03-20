@@ -1,3 +1,12 @@
+/////////////////////////////////////////////////////////////////////////////
+// Semester:         CS367 Spring 2017
+// PROJECT:          p3
+// FILE:             Reducer.java
+//
+// Author1: Aseel Albeshri, albeshri@wisc.edu, albeshri, lecture 002
+// Author2: Jessica Fernandes, jfernandes2@wisc.edu, jfernandes2, lecture 002
+//
+/////////////////////////////////////////////////////////////////////////////
 import java.io.*;
 import java.util.*;
 import java.lang.*;
@@ -17,7 +26,7 @@ public class Reducer {
 			System.out.println("Usage: java Reducer <weather|thesaurus> <dir_name> <output_file>");
 			System.exit(1);
 		}
-
+		
 		String type = args[0];
 		String dirName = args[1];
 		String outFile = args[2];
@@ -68,7 +77,28 @@ public class Reducer {
 			System.out.println("Invalid type of data! " + type);
 			System.exit(1);
 		}
-
-		// TODO
+		
+		for(int i = 0; i < fileList.size(); i++) {
+			queue.insert(fileList.get(i).next());
+		}
+		 PrintWriter printWriter = new PrintWriter ("output.txt");
+		while (!queue.isEmpty) {
+			FileLine e = queue.removeMin();
+			
+			if (e.equals(r))
+				r.join(e);
+			else {
+				printWriter.println(r.toString());
+				r.clear();
+				r.join(e);
+			}
+		}
+			
+			queue.insert(fileList.get(e.getFileIterator().getIndex()).next());
+			printWriter.println(r.toString());
+			
+		}
+		
+		
     }
-}
+
