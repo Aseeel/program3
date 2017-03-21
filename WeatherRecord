@@ -37,6 +37,9 @@ public class WeatherRecord extends Record {
 	 */
 	private class WeatherLineComparator implements Comparator<FileLine> {
 		public int compare(FileLine l1, FileLine l2) {
+			if(l1==null) return 1;
+			if(l2==null) return -1;
+			
 			String wdata1[] = l1.getString().split(",");
 			String wdata2[] = l2.getString().split(",");
 			if (Integer.parseInt(wdata1[0]) == Integer.parseInt(wdata2[0])) {
@@ -98,11 +101,12 @@ public class WeatherRecord extends Record {
 		String printD = "";
 		printD = stationID + "," + date + ",";
 		for (int i =0; i < data.size(); i++) {
+//			System.out.println(printD + data.get(i));
 			if (data.get(i) == Double.MIN_VALUE) {
-				printD.concat(("-,"));
+				printD +="-,";
 			}
 			else
-				printD.concat((data.get(i) + ","));
+				printD +=data.get(i) + ",";
 		}
 		printD = printD.substring(0, printD.length() - 1);
 		return printD;
